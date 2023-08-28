@@ -2,11 +2,14 @@ package ifpr.pgua.eic.colecaomusicas;
 
 import ifpr.pgua.eic.colecaomusicas.controllers.CadastroArtista;
 import ifpr.pgua.eic.colecaomusicas.controllers.CadastroGenero;
+import ifpr.pgua.eic.colecaomusicas.controllers.ListarArtistas;
 import ifpr.pgua.eic.colecaomusicas.controllers.ListarGeneros;
 import ifpr.pgua.eic.colecaomusicas.controllers.Principal;
+import ifpr.pgua.eic.colecaomusicas.daos.ArtistaDAO;
+import ifpr.pgua.eic.colecaomusicas.daos.FabricaConexoes;
 import ifpr.pgua.eic.colecaomusicas.daos.GeneroDAO;
+import ifpr.pgua.eic.colecaomusicas.daos.JDBCArtistaDAO;
 import ifpr.pgua.eic.colecaomusicas.daos.JDBCGeneroDAO;
-import ifpr.pgua.eic.colecaomusicas.models.FabricaConexoes;
 import ifpr.pgua.eic.colecaomusicas.repositories.RepositorioArtistas;
 import ifpr.pgua.eic.colecaomusicas.repositories.RepositorioGeneros;
 import io.github.hugoperlin.navigatorfx.BaseAppNavigator;
@@ -17,7 +20,8 @@ import io.github.hugoperlin.navigatorfx.ScreenRegistryFXML;
  */
 public class App extends BaseAppNavigator {
 
-    private RepositorioArtistas repositorioArtistas = new RepositorioArtistas(FabricaConexoes.getInstance());
+    private ArtistaDAO artistaDAO = new JDBCArtistaDAO(FabricaConexoes.getInstance());
+    private RepositorioArtistas repositorioArtistas = new RepositorioArtistas(artistaDAO);
     private GeneroDAO generoDAO = new JDBCGeneroDAO(FabricaConexoes.getInstance());
     private RepositorioGeneros repositorioGeneros = new RepositorioGeneros(generoDAO);
 
@@ -57,6 +61,12 @@ public class App extends BaseAppNavigator {
                   new ScreenRegistryFXML(App.class, 
                       "cadastrar_artista.fxml", 
                       o->new CadastroArtista(repositorioArtistas)
+                  )
+        );
+        registraTela("LISTARARTISTAS",
+                  new ScreenRegistryFXML(App.class, 
+                      "listar_artistas.fxml", 
+                      o->new ListarArtistas(repositorioArtistas)
                   )
         );
     }

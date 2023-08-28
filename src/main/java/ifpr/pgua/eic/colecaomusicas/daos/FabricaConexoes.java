@@ -1,4 +1,4 @@
-package ifpr.pgua.eic.colecaomusicas.models;
+package ifpr.pgua.eic.colecaomusicas.daos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

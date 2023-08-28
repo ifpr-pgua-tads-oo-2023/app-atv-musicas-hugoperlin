@@ -5,40 +5,39 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.github.hugoperlin.results.Resultado;
+
+import ifpr.pgua.eic.colecaomusicas.daos.ArtistaDAO;
+import ifpr.pgua.eic.colecaomusicas.daos.FabricaConexoes;
 import ifpr.pgua.eic.colecaomusicas.models.Artista;
-import ifpr.pgua.eic.colecaomusicas.models.FabricaConexoes;
 
 public class RepositorioArtistas {
     
     private ArrayList<Artista> artistas;
 
-    private FabricaConexoes fabrica;
+    private ArtistaDAO dao;
 
-    public RepositorioArtistas(FabricaConexoes fabrica){
+    public RepositorioArtistas(ArtistaDAO dao){
         artistas = new ArrayList<>();
-        this.fabrica = fabrica;
+        this.dao = dao;
     }
 
-    public String cadastrarArtista(String nome, String contato){
-        try{
-            Connection con = fabrica.getConnection();
-            //Preparar o comando sql
-            PreparedStatement pstm = con.
-            prepareStatement("INSERT INTO artistas(nome,contato) VALUES (?,?)");
-            //Ajustar os parâmetros
-            pstm.setString(1,nome);
-            pstm.setString(2, contato);
-            //Executar o comando
-            int ret = pstm.executeUpdate();
-
-            con.close();
-            if(ret == 1){
-                return "Artista cadastrado!";
-            }
-            return "Deu ruim!!";
-        }catch(SQLException e){
-            return e.getMessage();
+    public Resultado cadastrarArtista(String nome, String contato){
+        if(nome.isEmpty() || nome.isBlank()){
+            return Resultado.erro("Nome inválido!");
         }
+
+        if(contato.isBlank() || contato.isEmpty()){
+            return Resultado.erro("Contato inválido!");
+        }
+
+        Artista artista = new Artista(nome, contato);
+
+        return dao.criar(artista);
+    }
+
+    public Resultado listarArtistas(){
+        return dao.listar();
     }
 
 }

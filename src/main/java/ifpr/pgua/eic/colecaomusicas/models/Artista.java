@@ -11,6 +11,12 @@ public class Artista {
         this.contato = contato;
     }
 
+    public Artista(int id, String nome, String contato) {
+        this.id = id;
+        this.nome = nome;
+        this.contato = contato;
+    }
+
     public int getId() {
         return id;
     }

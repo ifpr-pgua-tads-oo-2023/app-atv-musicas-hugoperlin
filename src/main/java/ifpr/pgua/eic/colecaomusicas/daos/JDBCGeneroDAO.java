@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import com.github.hugoperlin.results.Resultado;
 
-import ifpr.pgua.eic.colecaomusicas.models.FabricaConexoes;
 import ifpr.pgua.eic.colecaomusicas.models.Genero;
 
 public class JDBCGeneroDAO implements GeneroDAO {

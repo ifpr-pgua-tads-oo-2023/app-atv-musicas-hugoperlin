@@ -1,5 +1,7 @@
 package ifpr.pgua.eic.colecaomusicas.controllers;
 
+import com.github.hugoperlin.results.Resultado;
+
 import ifpr.pgua.eic.colecaomusicas.App;
 import ifpr.pgua.eic.colecaomusicas.repositories.RepositorioArtistas;
 import ifpr.pgua.eic.colecaomusicas.repositories.RepositorioGeneros;
@@ -29,9 +31,16 @@ public class CadastroArtista {
         String nome = tfNome.getText();
         String contato = tfContato.getText();
 
-        String msg = repositorio.cadastrarArtista(nome, contato);
+        Resultado resultado = repositorio.cadastrarArtista(nome, contato);
 
-        Alert alert = new Alert(AlertType.INFORMATION,msg);
+        Alert alert;
+        
+        if(resultado.foiErro()){
+            alert = new Alert(AlertType.ERROR, resultado.getMsg());
+        }else{
+            alert = new Alert(AlertType.INFORMATION, resultado.getMsg());
+        }
+
         alert.showAndWait();
     }
 

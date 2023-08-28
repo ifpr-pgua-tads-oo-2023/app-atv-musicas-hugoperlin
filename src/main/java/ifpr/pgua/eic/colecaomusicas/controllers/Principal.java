@@ -21,4 +21,9 @@ public class Principal {
         App.pushScreen("LISTARGENEROS");
     }
 
+    @FXML
+    private void listarArtistas(){
+        App.pushScreen("LISTARARTISTAS");
+    }
+
 }
