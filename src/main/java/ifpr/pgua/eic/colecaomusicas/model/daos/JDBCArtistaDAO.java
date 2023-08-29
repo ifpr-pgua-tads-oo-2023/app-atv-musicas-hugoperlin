@@ -1,4 +1,4 @@
-package ifpr.pgua.eic.colecaomusicas.daos;
+package ifpr.pgua.eic.colecaomusicas.model.daos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import com.github.hugoperlin.results.Resultado;
 
-import ifpr.pgua.eic.colecaomusicas.models.Artista;
+import ifpr.pgua.eic.colecaomusicas.model.entities.Artista;
 
 public class JDBCArtistaDAO implements ArtistaDAO{
 
@@ -24,12 +24,15 @@ public class JDBCArtistaDAO implements ArtistaDAO{
         //try with resources, para não precisar fechar a conexao
         try(Connection con = fabrica.getConnection()){
             
-            //Preparar o comando sql
+            //Preparar o comando sql, com o parâmetro para
+            //pegar a chave que acabou de ser criada
             PreparedStatement pstm = con.
             prepareStatement("INSERT INTO artistas(nome,contato) VALUES (?,?)", Statement.RETURN_GENERATED_KEYS);
+            
             //Ajustar os parâmetros
             pstm.setString(1,artista.getNome());
             pstm.setString(2, artista.getContato());
+            
             //Executar o comando
             int ret = pstm.executeUpdate();
 

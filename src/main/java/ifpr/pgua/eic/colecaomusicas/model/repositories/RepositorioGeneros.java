@@ -1,4 +1,4 @@
-package ifpr.pgua.eic.colecaomusicas.repositories;
+package ifpr.pgua.eic.colecaomusicas.model.repositories;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,9 +9,9 @@ import java.util.List;
 
 import com.github.hugoperlin.results.Resultado;
 
-import ifpr.pgua.eic.colecaomusicas.daos.FabricaConexoes;
-import ifpr.pgua.eic.colecaomusicas.daos.GeneroDAO;
-import ifpr.pgua.eic.colecaomusicas.models.Genero;
+import ifpr.pgua.eic.colecaomusicas.model.daos.FabricaConexoes;
+import ifpr.pgua.eic.colecaomusicas.model.daos.GeneroDAO;
+import ifpr.pgua.eic.colecaomusicas.model.entities.Genero;
 
 public class RepositorioGeneros {
     

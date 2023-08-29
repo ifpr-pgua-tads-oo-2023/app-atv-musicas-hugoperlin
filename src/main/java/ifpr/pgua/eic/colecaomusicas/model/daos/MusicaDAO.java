@@ -1,8 +1,8 @@
-package ifpr.pgua.eic.colecaomusicas.daos;
+package ifpr.pgua.eic.colecaomusicas.model.daos;
 
 import com.github.hugoperlin.results.Resultado;
 
-import ifpr.pgua.eic.colecaomusicas.models.Musica;
+import ifpr.pgua.eic.colecaomusicas.model.entities.Musica;
 
 public interface MusicaDAO {
     Resultado criar(Musica musica);

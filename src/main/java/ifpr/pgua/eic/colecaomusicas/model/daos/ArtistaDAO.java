@@ -1,15 +1,22 @@
-package ifpr.pgua.eic.colecaomusicas.daos;
+package ifpr.pgua.eic.colecaomusicas.model.daos;
 
 import com.github.hugoperlin.results.Resultado;
 
-import ifpr.pgua.eic.colecaomusicas.models.Artista;
+import ifpr.pgua.eic.colecaomusicas.model.entities.Artista;
 
 public interface ArtistaDAO {
+    //create
     Resultado criar(Artista artista);
-    Resultado buscarArtistaMusica(int musicaId);
+    
+    //read
     Resultado listar();
+    
     Resultado getById(int id);
+    Resultado buscarArtistaMusica(int musicaId);
+    
+    //update
     Resultado atualizar(int id, Artista novo);
+    
+    //delete
     Resultado deletar(int id);
-
 }

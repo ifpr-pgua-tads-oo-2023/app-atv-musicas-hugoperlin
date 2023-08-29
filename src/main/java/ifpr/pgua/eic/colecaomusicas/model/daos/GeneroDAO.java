@@ -1,8 +1,8 @@
-package ifpr.pgua.eic.colecaomusicas.daos;
+package ifpr.pgua.eic.colecaomusicas.model.daos;
 
 import com.github.hugoperlin.results.Resultado;
 
-import ifpr.pgua.eic.colecaomusicas.models.Genero;
+import ifpr.pgua.eic.colecaomusicas.model.entities.Genero;
 
 public interface GeneroDAO {
     //c

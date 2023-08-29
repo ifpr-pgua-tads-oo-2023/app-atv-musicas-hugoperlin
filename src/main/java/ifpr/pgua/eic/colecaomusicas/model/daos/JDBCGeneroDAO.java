@@ -1,4 +1,4 @@
-package ifpr.pgua.eic.colecaomusicas.daos;
+package ifpr.pgua.eic.colecaomusicas.model.daos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import com.github.hugoperlin.results.Resultado;
 
-import ifpr.pgua.eic.colecaomusicas.models.Genero;
+import ifpr.pgua.eic.colecaomusicas.model.entities.Genero;
 
 public class JDBCGeneroDAO implements GeneroDAO {
 

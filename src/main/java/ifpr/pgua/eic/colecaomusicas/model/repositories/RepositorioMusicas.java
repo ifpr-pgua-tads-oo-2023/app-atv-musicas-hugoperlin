@@ -1,16 +1,16 @@
-package ifpr.pgua.eic.colecaomusicas.repositories;
+package ifpr.pgua.eic.colecaomusicas.model.repositories;
 
 import java.time.LocalDate;
 import java.util.List;
 
 import com.github.hugoperlin.results.Resultado;
 
-import ifpr.pgua.eic.colecaomusicas.daos.ArtistaDAO;
-import ifpr.pgua.eic.colecaomusicas.daos.GeneroDAO;
-import ifpr.pgua.eic.colecaomusicas.daos.MusicaDAO;
-import ifpr.pgua.eic.colecaomusicas.models.Artista;
-import ifpr.pgua.eic.colecaomusicas.models.Genero;
-import ifpr.pgua.eic.colecaomusicas.models.Musica;
+import ifpr.pgua.eic.colecaomusicas.model.daos.ArtistaDAO;
+import ifpr.pgua.eic.colecaomusicas.model.daos.GeneroDAO;
+import ifpr.pgua.eic.colecaomusicas.model.daos.MusicaDAO;
+import ifpr.pgua.eic.colecaomusicas.model.entities.Artista;
+import ifpr.pgua.eic.colecaomusicas.model.entities.Genero;
+import ifpr.pgua.eic.colecaomusicas.model.entities.Musica;
 
 public class RepositorioMusicas {
     

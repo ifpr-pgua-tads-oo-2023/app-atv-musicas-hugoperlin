@@ -7,8 +7,8 @@ import java.util.ResourceBundle;
 import com.github.hugoperlin.results.Resultado;
 
 import ifpr.pgua.eic.colecaomusicas.App;
-import ifpr.pgua.eic.colecaomusicas.models.Musica;
-import ifpr.pgua.eic.colecaomusicas.repositories.RepositorioMusicas;
+import ifpr.pgua.eic.colecaomusicas.model.entities.Musica;
+import ifpr.pgua.eic.colecaomusicas.model.repositories.RepositorioMusicas;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;

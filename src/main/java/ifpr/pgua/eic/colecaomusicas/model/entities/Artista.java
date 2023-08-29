@@ -1,4 +1,4 @@
-package ifpr.pgua.eic.colecaomusicas.models;
+package ifpr.pgua.eic.colecaomusicas.model.entities;
 
 public class Artista {
     

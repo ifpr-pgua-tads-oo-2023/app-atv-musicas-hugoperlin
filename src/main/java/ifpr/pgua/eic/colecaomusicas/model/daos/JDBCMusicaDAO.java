@@ -1,4 +1,4 @@
-package ifpr.pgua.eic.colecaomusicas.daos;
+package ifpr.pgua.eic.colecaomusicas.model.daos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import com.github.hugoperlin.results.Resultado;
 
-import ifpr.pgua.eic.colecaomusicas.models.Musica;
+import ifpr.pgua.eic.colecaomusicas.model.entities.Musica;
 
 public class JDBCMusicaDAO implements MusicaDAO{
     private static final String INSERTSQL = "INSERT INTO musicas(nome,duracao,anoLancamento,artistaId,generoId) VALUES (?,?,?,?,?)";
@@ -31,7 +31,7 @@ public class JDBCMusicaDAO implements MusicaDAO{
             pstm.setInt(2, musica.getDuracao());
             pstm.setInt(3, musica.getAnoLancamento());
             pstm.setInt(4, musica.getArtista().getId());
-            pstm.setInt(5,musica.getGenero().getId());
+            pstm.setInt(5, musica.getGenero().getId());
 
             int ret = pstm.executeUpdate();
 
