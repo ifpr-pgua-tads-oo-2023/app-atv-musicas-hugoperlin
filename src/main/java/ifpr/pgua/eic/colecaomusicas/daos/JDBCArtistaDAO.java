@@ -78,6 +78,61 @@ public class JDBCArtistaDAO implements ArtistaDAO{
     }
 
     @Override
+    public Resultado getById(int id){
+
+        try (Connection con = fabrica.getConnection()) {
+
+            PreparedStatement pstm = con.prepareStatement("SELECT * FROM artistas WHERE id=?");
+
+            pstm.setInt(1, id);
+
+            ResultSet rs = pstm.executeQuery();
+            
+            if(rs.next()){
+                String nome = rs.getString("nome");
+                String contato = rs.getString("contato");
+
+                Artista artista = new Artista(id,nome, contato);
+
+                return Resultado.sucesso("Artista encontrado", artista);
+            }else{
+                return Resultado.erro("Artista não encontrado!");
+            }
+
+
+        } catch (SQLException e) {
+            return Resultado.erro(e.getMessage());
+        }
+
+
+    }
+
+    @Override
+    public Resultado buscarArtistaMusica(int musicaId) {
+        
+        try (Connection con = fabrica.getConnection()) {
+
+            PreparedStatement pstm = con.prepareStatement("SELECT artistaId FROM musicas WHERE id=?");
+
+            pstm.setInt(1, musicaId);
+
+            ResultSet rs = pstm.executeQuery();
+            rs.next();
+
+            int artistaId = rs.getInt("artistaId");
+
+            //podemos criar um método no artistaDAO que retorna um artista baseado no id
+            return getById(artistaId);
+
+
+        } catch (SQLException e) {
+            return Resultado.erro(e.getMessage());
+        }
+
+
+    }
+
+    @Override
     public Resultado atualizar(int id, Artista novo) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'atualizar'");

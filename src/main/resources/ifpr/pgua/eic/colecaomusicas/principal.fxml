@@ -28,6 +28,8 @@
             <Button text="Listar Gêneros" onAction="#listarGeneros" prefWidth="200"/>
             <Button text="Cadastrar Artista" onAction="#cadastrarArtista"  prefWidth="200"/>
             <Button text="Listar Artistas" onAction="#listarArtistas" prefWidth="200"/>
+            <Button text="Cadastrar Música" onAction="#cadastrarMusica"  prefWidth="200"/>
+            <Button text="Listar Músicas" onAction="#listarMusicas"  prefWidth="200"/>
 
         </VBox>
     </left>

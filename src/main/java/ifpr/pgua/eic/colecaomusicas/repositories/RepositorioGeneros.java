@@ -30,13 +30,8 @@ public class RepositorioGeneros {
         return resultado.getMsg();
     }
 
-    public List<Genero> listarGeneros(){
-        Resultado resultado = dao.listar();
-
-        if(resultado.foiSucesso()){
-            return (ArrayList)resultado.comoSucesso().getObj();
-        }
-        return null;
+    public Resultado listarGeneros(){
+        return dao.listar();
     }
 
 

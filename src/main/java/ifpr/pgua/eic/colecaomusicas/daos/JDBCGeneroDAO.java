@@ -71,6 +71,52 @@ public class JDBCGeneroDAO implements GeneroDAO {
 
     }
 
+    
+
+
+    @Override
+    public Resultado buscarGeneroMusica(int musicaId) {
+        try (Connection con = fabrica.getConnection()) {
+
+            PreparedStatement pstm = con.prepareStatement("SELECT generoId FROM musicas WHERE id=?");
+
+            pstm.setInt(1, musicaId);
+
+            ResultSet rs = pstm.executeQuery();
+            rs.next();
+            int generoId = rs.getInt("generoId");
+
+            return getById(generoId);
+
+        } catch (SQLException e) {  
+            return Resultado.erro(e.getMessage());
+        }
+
+    }
+
+    @Override
+    public Resultado getById(int id) {
+        try (Connection con = fabrica.getConnection()) {
+
+            PreparedStatement pstm = con.prepareStatement("SELECT * FROM generos WHERE id=?");
+
+            pstm.setInt(1, id);
+
+            ResultSet rs = pstm.executeQuery();
+
+            if(rs.next()){
+                String nome = rs.getString("nome");
+
+                Genero genero = new Genero(id, nome);
+                return Resultado.sucesso("Gênero encontrado!", genero);
+            }
+            return Resultado.erro("Gênero não encontrado!");
+
+        } catch (SQLException e) {
+            return Resultado.erro(e.getMessage());
+        }
+    }
+
     @Override
     public Resultado atualizar(int id, Genero novo) {
         // TODO Auto-generated method stub

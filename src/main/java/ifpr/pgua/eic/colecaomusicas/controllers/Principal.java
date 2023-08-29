@@ -26,4 +26,14 @@ public class Principal {
         App.pushScreen("LISTARARTISTAS");
     }
 
+        @FXML
+    private void cadastrarMusica(){
+        App.pushScreen("CADASTRARMUSICA");
+    }
+
+    @FXML
+    private void listarMusicas(){
+        App.pushScreen("LISTARMUSICAS");
+    }
+
 }

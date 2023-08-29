@@ -10,7 +10,9 @@ public interface GeneroDAO {
 
     //r
     Resultado listar();
-
+    Resultado getById(int id);
+    Resultado buscarGeneroMusica(int musicaId);
+    
     //u
     Resultado atualizar(int id, Genero novo);
 
