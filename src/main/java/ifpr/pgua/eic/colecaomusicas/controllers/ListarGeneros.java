@@ -35,7 +35,9 @@ public class ListarGeneros implements Initializable{
 
     @FXML
     void mostrarSelecionados(){
-        List<Genero> selecionados = lstGeneros.getSelectionModel().getSelectedItems();
+        List<Genero> selecionados = lstGeneros
+                                      .getSelectionModel()
+                                      .getSelectedItems();
         
         String str = "";
 
