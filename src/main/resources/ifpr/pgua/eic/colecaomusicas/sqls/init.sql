@@ -25,3 +25,19 @@ CREATE TABLE IF NOT EXISTS musicas (
     FOREIGN KEY (generoId) REFERENCES generos(id),
     
 );
+
+CREATE TABLE IF NOT EXISTS playlists (
+    id int NOT NULL AUTO_INCREMENT,
+    nome varchar(255) NOT NULL,
+    PRIMARY KEY (id),
+);
+
+CREATE TABLE IF NOT EXISTS playlistsmusicas (
+    id int NOT NULL AUTO_INCREMENT,
+    playlistId int NOT NULL,
+    musicaId int NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (playlistId) REFERENCES playlists(id),
+    FOREIGN KEY (musicaId) REFERENCES musicas(id),
+    
+);

@@ -77,7 +77,7 @@ public class Musica {
     }
 
     public String toString(){
-        return nome+"("+this.artista.getNome()+")";
+        return id+"-"+nome+"("+this.artista.getNome()+")";
     }
 
     

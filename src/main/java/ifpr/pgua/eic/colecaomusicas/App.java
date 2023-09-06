@@ -3,9 +3,11 @@ package ifpr.pgua.eic.colecaomusicas;
 import ifpr.pgua.eic.colecaomusicas.controllers.CadastroArtista;
 import ifpr.pgua.eic.colecaomusicas.controllers.CadastroGenero;
 import ifpr.pgua.eic.colecaomusicas.controllers.CadastroMusica;
+import ifpr.pgua.eic.colecaomusicas.controllers.CadastroPlaylist;
 import ifpr.pgua.eic.colecaomusicas.controllers.ListarArtistas;
 import ifpr.pgua.eic.colecaomusicas.controllers.ListarGeneros;
 import ifpr.pgua.eic.colecaomusicas.controllers.ListarMusicas;
+import ifpr.pgua.eic.colecaomusicas.controllers.ListarPlaylists;
 import ifpr.pgua.eic.colecaomusicas.controllers.Principal;
 import ifpr.pgua.eic.colecaomusicas.model.daos.ArtistaDAO;
 import ifpr.pgua.eic.colecaomusicas.model.daos.FabricaConexoes;
@@ -13,10 +15,13 @@ import ifpr.pgua.eic.colecaomusicas.model.daos.GeneroDAO;
 import ifpr.pgua.eic.colecaomusicas.model.daos.JDBCArtistaDAO;
 import ifpr.pgua.eic.colecaomusicas.model.daos.JDBCGeneroDAO;
 import ifpr.pgua.eic.colecaomusicas.model.daos.JDBCMusicaDAO;
+import ifpr.pgua.eic.colecaomusicas.model.daos.JDBCPlaylistDAO;
 import ifpr.pgua.eic.colecaomusicas.model.daos.MusicaDAO;
+import ifpr.pgua.eic.colecaomusicas.model.daos.PlaylistDAO;
 import ifpr.pgua.eic.colecaomusicas.model.repositories.RepositorioArtistas;
 import ifpr.pgua.eic.colecaomusicas.model.repositories.RepositorioGeneros;
 import ifpr.pgua.eic.colecaomusicas.model.repositories.RepositorioMusicas;
+import ifpr.pgua.eic.colecaomusicas.model.repositories.RepositorioPlaylists;
 import io.github.hugoperlin.navigatorfx.BaseAppNavigator;
 import io.github.hugoperlin.navigatorfx.ScreenRegistryFXML;
 
@@ -33,6 +38,9 @@ public class App extends BaseAppNavigator {
 
     private MusicaDAO musicaDAO = new JDBCMusicaDAO(FabricaConexoes.getInstance());
     private RepositorioMusicas repositorioMusicas = new RepositorioMusicas(musicaDAO, artistaDAO, generoDAO);
+
+    private PlaylistDAO playlistDAO = new JDBCPlaylistDAO(FabricaConexoes.getInstance());
+    private RepositorioPlaylists repositorioPlaylists = new RepositorioPlaylists(playlistDAO, repositorioMusicas);
 
     public static void main(String[] args) {
         launch();
@@ -88,6 +96,18 @@ public class App extends BaseAppNavigator {
                   new ScreenRegistryFXML(App.class, 
                       "listar_musicas.fxml", 
                       o->new ListarMusicas(repositorioMusicas)
+                  )
+        );
+        registraTela("CADASTRARPLAYLIST",
+                  new ScreenRegistryFXML(App.class, 
+                      "cadastrar_playlist.fxml", 
+                      o->new CadastroPlaylist(repositorioPlaylists,repositorioMusicas)
+                  )
+        );
+        registraTela("LISTARPLAYLISTS",
+                  new ScreenRegistryFXML(App.class, 
+                      "listar_playlists.fxml", 
+                      o->new ListarPlaylists(repositorioPlaylists)
                   )
         );
     }
