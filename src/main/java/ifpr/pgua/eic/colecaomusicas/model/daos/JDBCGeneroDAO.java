@@ -4,11 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.github.hugoperlin.results.Resultado;
 
 import ifpr.pgua.eic.colecaomusicas.model.entities.Genero;
+import ifpr.pgua.eic.colecaomusicas.utils.DBUtils;
 
 public class JDBCGeneroDAO implements GeneroDAO {
 
@@ -20,20 +22,24 @@ public class JDBCGeneroDAO implements GeneroDAO {
 
     @Override
     public Resultado criar(Genero genero) {
-        try {
-
-            Connection con = fabrica.getConnection();
+        try(Connection con = fabrica.getConnection();) {
 
             // Preparar o comando sql
-            PreparedStatement pstm = con.prepareStatement("INSERT INTO generos(nome) VALUES (?)");
+            PreparedStatement pstm = con.prepareStatement("INSERT INTO generos(nome) VALUES (?)",Statement.RETURN_GENERATED_KEYS);
             // Ajustar os parâmetros
             pstm.setString(1, genero.getNome());
             // Executar o comando
             int ret = pstm.executeUpdate();
 
-            con.close();
-
+            
             if (ret == 1) {
+
+                System.out.println(con.getMetaData().getDatabaseProductName());
+
+                int id = DBUtils.getLastId(pstm);
+                genero.setId(id);
+
+                System.out.println(genero);
                 return Resultado.sucesso("Gênero cadastrado", genero);
             }
             return Resultado.erro("Erro não identificado!");
@@ -119,8 +125,24 @@ public class JDBCGeneroDAO implements GeneroDAO {
 
     @Override
     public Resultado atualizar(int id, Genero novo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atualizar'");
+        try(Connection con = fabrica.getConnection();) {
+
+            // Preparar o comando sql
+            PreparedStatement pstm = con.prepareStatement("UPDATE generos SET nome=? WHERE id=?");
+            // Ajustar os parâmetros
+            pstm.setString(1, novo.getNome());
+            pstm.setInt(2, id);
+            // Executar o comando
+            int ret = pstm.executeUpdate();
+
+            
+            if (ret == 1) {
+                return Resultado.sucesso("Gênero atualizado", novo);
+            }
+            return Resultado.erro("Erro não identificado!");
+        } catch (SQLException e) {
+            return Resultado.erro(e.getMessage());
+        }
     }
 
     @Override

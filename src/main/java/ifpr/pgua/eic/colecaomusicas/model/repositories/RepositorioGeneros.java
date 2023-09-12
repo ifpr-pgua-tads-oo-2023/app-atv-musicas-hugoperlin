@@ -30,6 +30,14 @@ public class RepositorioGeneros {
         return resultado.getMsg();
     }
 
+    public String alterarGenero(int id, String nome){
+        Genero novo = new Genero(id, nome);
+
+        Resultado resultado = dao.atualizar(id, novo);
+
+        return resultado.getMsg();
+    }
+
     public Resultado listarGeneros(){
         return dao.listar();
     }

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import com.github.hugoperlin.results.Resultado;
 
 import ifpr.pgua.eic.colecaomusicas.model.entities.Artista;
+import ifpr.pgua.eic.colecaomusicas.utils.DBUtils;
 
 public class JDBCArtistaDAO implements ArtistaDAO{
 
@@ -39,9 +40,7 @@ public class JDBCArtistaDAO implements ArtistaDAO{
             if(ret == 1){
                 
                 //se conseguiu inserir, vamos pegar o id criado
-                ResultSet rs = pstm.getGeneratedKeys();
-                rs.next();
-                int id = rs.getInt(1);
+                int id = DBUtils.getLastId(pstm);
 
                 artista.setId(id);
 

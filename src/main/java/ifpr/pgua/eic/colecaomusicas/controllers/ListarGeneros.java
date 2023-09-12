@@ -24,6 +24,8 @@ public class ListarGeneros implements Initializable{
 
     private RepositorioGeneros repositorio;
 
+    private Genero selecionado;
+
     public ListarGeneros(RepositorioGeneros repositorio){
         this.repositorio = repositorio;
     }
@@ -49,6 +51,20 @@ public class ListarGeneros implements Initializable{
         alert.showAndWait();
     
     }
+
+    @FXML
+    private void selecionar(){
+        selecionado = lstGeneros.getSelectionModel().getSelectedItem();
+    }
+
+    @FXML
+    private void alterar(){
+        if(selecionado != null ){
+            App.pushScreen("CADASTROGENERO", o->new CadastroGenero(repositorio, selecionado));
+            System.out.println("Teste...");
+        }
+    }
+
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {

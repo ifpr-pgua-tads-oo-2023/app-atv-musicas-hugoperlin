@@ -13,6 +13,7 @@ import java.util.List;
 import com.github.hugoperlin.results.Resultado;
 
 import ifpr.pgua.eic.colecaomusicas.model.entities.Musica;
+import ifpr.pgua.eic.colecaomusicas.utils.DBUtils;
 
 public class JDBCMusicaDAO implements MusicaDAO{
     private static final String INSERTSQL = "INSERT INTO musicas(nome,duracao,anoLancamento,artistaId,generoId) VALUES (?,?,?,?,?)";
@@ -43,9 +44,7 @@ public class JDBCMusicaDAO implements MusicaDAO{
             int ret = pstm.executeUpdate();
 
             if(ret == 1){
-                ResultSet rs = pstm.getGeneratedKeys();
-                rs.next();
-                int id = rs.getInt(1);
+                int id = DBUtils.getLastId(pstm);
 
                 musica.setId(id);
 

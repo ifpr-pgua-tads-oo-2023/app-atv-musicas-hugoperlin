@@ -15,6 +15,7 @@ import com.github.hugoperlin.results.Resultado;
 
 import ifpr.pgua.eic.colecaomusicas.model.entities.Musica;
 import ifpr.pgua.eic.colecaomusicas.model.entities.Playlist;
+import ifpr.pgua.eic.colecaomusicas.utils.DBUtils;
 
 public class JDBCPlaylistDAO implements PlaylistDAO{
 
@@ -40,10 +41,8 @@ public class JDBCPlaylistDAO implements PlaylistDAO{
             int ret = pstm.executeUpdate();
 
             if(ret == 1){
-                ResultSet rs = pstm.getGeneratedKeys();
-                rs.next();
-                int idPlaylist = rs.getInt(1);
-                playlist.setId(idPlaylist);
+                int id = DBUtils.getLastId(pstm);
+                playlist.setId(id);
 
                 PreparedStatement pstm2 = con.prepareStatement(INSERTMUSICA);
 

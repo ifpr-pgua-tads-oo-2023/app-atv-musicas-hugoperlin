@@ -8,9 +8,10 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ifpr.pgua.eic.colecaomusicas.controllers.ListarGeneros">
    <children>
-      <ListView fx:id="lstGeneros" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="lstGeneros" prefHeight="200.0" prefWidth="200.0" onMouseClicked="#selecionar"/>
       <Button mnemonicParsing="false" onAction="#voltar" text="Voltar" />
       <Button mnemonicParsing="false" onAction="#mostrarSelecionados" text="Selecionados" />
+      <Button mnemonicParsing="false" onAction="#alterar" text="Alterar" />
    
    </children>
    <padding>

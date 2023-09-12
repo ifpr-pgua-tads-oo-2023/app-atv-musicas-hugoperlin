@@ -1,5 +1,6 @@
 package ifpr.pgua.eic.colecaomusicas;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,7 +27,12 @@ import ifpr.pgua.eic.colecaomusicas.model.repositories.RepositorioMusicas;
 
 public class Testes {
  
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException{
+        
+        System.out.println(FabricaConexoes.getInstance().getConnection().getMetaData().getDatabaseProductName());
+        
+        
+        /*
         Faker faker = new Faker(Locale.getDefault());
         Random rnd  = new Random();
 
@@ -48,9 +54,9 @@ public class Testes {
             generoDAO.criar(genero);
         }
          */
-
-        List<Artista> artistas = (ArrayList)artistaDAO.listar().comoSucesso().getObj();
-        List<Genero> generos = (ArrayList)generoDAO.listar().comoSucesso().getObj();
+        
+        //List<Artista> artistas = (ArrayList)artistaDAO.listar().comoSucesso().getObj();
+        //List<Genero> generos = (ArrayList)generoDAO.listar().comoSucesso().getObj();
 
         /*for(int i=0;i<30;i++){
             Artista artista = artistas.get(rnd.nextInt(artistas.size()));
@@ -71,10 +77,10 @@ public class Testes {
         Resultado res = playlistDAO.criar(playlist);
         System.out.println(res.getMsg());*/
 
-        Resultado res = playlistDAO.calcularTotalMinutosPlaylist(3);
-        System.out.println(res.getMsg());
-        double valor = (double)res.comoSucesso().getObj();
-        System.out.println("Total:"+valor);
+        //Resultado res = playlistDAO.calcularTotalMinutosPlaylist(3);
+        //System.out.println(res.getMsg());
+        //double valor = (double)res.comoSucesso().getObj();
+        //System.out.println("Total:"+valor);
 
     }
 
