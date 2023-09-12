@@ -19,7 +19,12 @@
         <dependency>
             <groupId>com.github.hugoperlin</groupId>
             <artifactId>navigatorfx</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.hugoperlin</groupId>
+            <artifactId>results</artifactId>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -31,6 +36,34 @@
             <artifactId>javafx-fxml</artifactId>
             <version>13</version>
         </dependency>
+
+        <dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.30</version>
+		</dependency> 
+
+        <dependency>
+            <groupId>io.github.cdimascio</groupId>
+            <artifactId>dotenv-java</artifactId>
+            <version>2.2.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc -->
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.43.0.0</version>
+        </dependency>
+
+
+
     </dependencies>
     <build>
         <plugins>

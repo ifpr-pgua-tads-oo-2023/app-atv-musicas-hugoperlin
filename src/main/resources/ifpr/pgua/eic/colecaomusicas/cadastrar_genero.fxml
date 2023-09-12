@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" vgap="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="ifpr.pgua.eic.colecaomusicas.controllers.CadastroGenero">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.0" minWidth="10.0" prefWidth="196.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="567.0" minWidth="10.0" prefWidth="404.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="157.0" minHeight="0.0" prefHeight="33.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="267.0" minHeight="0.0" prefHeight="35.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="340.0" minHeight="10.0" prefHeight="274.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label text="Id:" />
+      <TextField fx:id="tfId" editable="false" GridPane.columnIndex="1" />
+      <Label text="Nome:" GridPane.rowIndex="1" />
+      <TextField fx:id="tfNome" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <children>
+            <Button fx:id="btAcao" mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar" />
+            <Button fx:id="btVoltar" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</GridPane>
