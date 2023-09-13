@@ -49,4 +49,15 @@ public class ListarArtistas implements Initializable{
     
     }
 
+    @FXML
+    private void editar(){
+        Artista artista = lstArtistas.getSelectionModel().getSelectedItem();
+    
+        if(artista != null){
+            App.pushScreen("CADASTROARTISTA",
+                         o->new CadastroArtista(repositorio,artista));
+        }
+    
+    }
+
 }

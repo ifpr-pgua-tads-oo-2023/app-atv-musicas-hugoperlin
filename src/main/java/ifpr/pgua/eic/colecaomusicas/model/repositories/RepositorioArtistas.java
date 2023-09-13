@@ -40,4 +40,11 @@ public class RepositorioArtistas {
         return dao.listar();
     }
 
+    public Resultado atualizarArtista(int id, String nome, String contato) {
+        
+        Artista artista = new Artista(nome, contato);
+        return dao.atualizar(id, artista);
+
+    }
+
 }

@@ -136,8 +136,27 @@ public class JDBCArtistaDAO implements ArtistaDAO{
 
     @Override
     public Resultado atualizar(int id, Artista novo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atualizar'");
+    
+        try(Connection con=fabrica.getConnection()){
+            PreparedStatement pstm = con.prepareStatement("UPDATE artistas SET nome=?, contato=? WHERE id=?");
+
+            pstm.setString(1, novo.getNome());
+            pstm.setString(2, novo.getContato());
+            pstm.setInt(3, id);
+
+            int ret = pstm.executeUpdate();
+
+            if(ret==1){
+                novo.setId(id);
+                return Resultado.sucesso("Artista editado!", novo);
+            }
+            return Resultado.erro("Vixe...!");
+
+
+        }catch(SQLException e){
+            return Resultado.erro(e.getMessage());
+        }
+    
     }
 
     @Override
